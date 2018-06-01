@@ -1,6 +1,8 @@
 
 package Controlador;
 
+import Datos.Dusuario;
+import Logica.Lusuario;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -10,7 +12,7 @@ public class Acceso extends javax.swing.JFrame {
    
     public Acceso() {
         initComponents();
-        this.setTitle("BIENVENIDO AL SISTEMA - 2017");
+        this.setTitle("BIENVENIDO AL SISTEMA - 2018");
         this.setLocationRelativeTo(null);
         //setDefaultCloseOperation(0);
         //this.setResizable(false);
@@ -157,17 +159,30 @@ public class Acceso extends javax.swing.JFrame {
         String contra= "1234";
         
         String pass=new String(txtPass.getPassword());
-        String user= new String(txtUser.getText());
-        if(user.equals(usuario) && pass.equals(contra)){
+        String user= new String(txtUser.getText().trim().toUpperCase());
+        Lusuario lusuario = new Lusuario();
+        boolean usuarioEncontrado = lusuario.ValidarLogin(txtUser.getText().trim().toUpperCase(),txtPass.getText().trim().toUpperCase());
+        if(user.equals("")){
+            JOptionPane.showMessageDialog(this, "DEBE INGRESAR USUARIO","Mensaje del Sistema",JOptionPane.WARNING_MESSAGE);
+            txtUser.requestFocus();
+        }
+        else if(pass.equals("")){
+            JOptionPane.showMessageDialog(this, "DEBE INGRESAR CLAVE","Mensaje del Sistema",JOptionPane.WARNING_MESSAGE);
+            txtPass.requestFocus();
+        }
+        else if(user.equals(usuario) && pass.equals(contra)){
             
-            JOptionPane.showMessageDialog(this, "BIENVENIDO ADMINISTRADOR ... ");
+            JOptionPane.showMessageDialog(this, "BIENVENIDO ADMINISTRADOR ... ","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
             Menu p1 = new Menu();
             p1.setVisible(true);//mantiene abierto
             dispose();//cierra a esta clase
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario o clave incorrecto...");
         }
-        
+        else if(usuarioEncontrado==true){
+            JOptionPane.showMessageDialog(this, "BIENVENIDO USUARIO "+txtUser.getText().trim()+"","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Usuario o clave incorrecto...","Mensaje del Sistema",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_IngresarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
