@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class conexion {
-    public String db="";
+    public String db="db_colegio";
     public String url="jdbc:mysql://localhost:3306/"+db;
     public String usr="root";
     public String pass="";
