@@ -12,6 +12,10 @@ public class Danioaca {
     public Danioaca() {
     }
 
+    public Danioaca(Integer idanio) {
+        this.idanio = idanio;
+    }
+
     public Danioaca(Integer idanio, String anioactual, String fechin, String fechfin) {
         this.idanio = idanio;
         this.anioactual = anioactual;
