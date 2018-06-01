@@ -1,9 +1,9 @@
 
 package Logica;
 
-import Datos.Danioaca;
+import Datos.Dcurso;
+import Datos.Drol;
 import conexion.conexion;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,22 +11,22 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Lanioaca {
-    private conexion mysql=new conexion();
-//    private Connection mysql.conectar()=mysql.conectar();
-    private String sSQL="";
+public class Lrol {
     
+    private conexion mysql=new conexion();
+
+    private String sSQL="";
     public Integer totalregistros;
     
     public Integer GenerarId(){
-        sSQL = "select max(idanio+1) as idanio from anioaca";
+        sSQL = "select max(idrol+1) as idanio from rol";
         Integer id = 0;
         try {
             Statement st = mysql.conectar().prepareStatement(sSQL);
             ResultSet rs = st.executeQuery(sSQL);
             
             if(rs.next()){
-                id = rs.getInt("idanio");
+                id = rs.getInt("idrol");
                 if(rs.wasNull()){
                     id = 1;
                 }
@@ -38,29 +38,28 @@ public class Lanioaca {
         }
     }
     
-      public DefaultTableModel mostrar(String buscar, String anioactual){
+      public DefaultTableModel mostrar(String buscar, String nomrol){
+          
         DefaultTableModel modelo;
         
-        String [] titulos ={"ID","AÑO ACTUAL","FECHA - INICIO","FECHA - FIN "};
-        String [] registro = new String[4];
+        String [] titulos ={"ID","NOMBRE"};
+        String [] registro = new String[2];
         
         totalregistros=0;
         modelo=new DefaultTableModel(null, titulos);
         
-        sSQL="select * from anioaca where "+anioactual+" like '"+buscar+"%'order by idanio";
-    
-        
+        sSQL="select * from rol where "+nomrol+" like '"+buscar+"%'order by idrol";
+               
         try {
             Statement st=mysql.conectar().createStatement();
             ResultSet rs=st.executeQuery(sSQL);
             
             while (rs.next()) {                
-                registro [0]=rs.getString("idanio");
-                registro [1]=rs.getString("anioactual");
-                registro [2]=rs.getString("fechin");
-                registro [3]=rs.getString("fechfin");
-               
-                                        
+                registro [0]=rs.getString("idrol");
+                registro [1]=rs.getString("nomrol");
+                
+                
+                                                     
                 totalregistros=totalregistros+1;
                 modelo.addRow(registro);
             }
@@ -72,17 +71,15 @@ public class Lanioaca {
         }
     }
     
-    public boolean insertar (Danioaca dts){
-        dts.setIdanio(GenerarId());
-        sSQL="INSERT INTO anioaca ( idanio, anioactual, fechin, fechfin) values(?,?,?,?)";
+    public boolean insertar (Drol dts){
+        dts.setIdrol(GenerarId());
+        sSQL="INSERT INTO asistencia ( idrol , nomrol ) values(?,?)";
         try {
             PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdanio());
-            pst.setString(2, dts.getAnioactual());
-            pst.setString(3, dts.getFechin()); 
-            pst.setString(4, dts.getFechfin()); 
-           
-            
+            pst.setInt(1, dts.getIdrol());
+            pst.setString(2, dts.getNomrol());
+          
+                       
             int n=pst.executeUpdate();
             if (n!=0) {
                 return true;
@@ -96,15 +93,14 @@ public class Lanioaca {
         }
     }
     
-    public boolean editar (Danioaca dts){
-        sSQL="update aniaca set aniactual=?,fechin=?,fechin=?   where idanio=?";
+    public boolean editar (Drol dts){
+        sSQL="update curso set nomrol=?    where idrol=?";
         try {
             
             PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdanio());
-            pst.setString(2, dts.getAnioactual());
-            pst.setString(3, dts.getFechin());
-            pst.setString(4, dts.getFechfin()); 
+            pst.setInt(1, dts.getIdrol());
+            pst.setString(2, dts.getNomrol());
+         
            
             int n=pst.executeUpdate();
             if (n!=0) {
@@ -120,14 +116,14 @@ public class Lanioaca {
        
     }
     
-    public boolean eliminar (Danioaca dts){
-        sSQL="delete from anioaca where idanio=?";
+    public boolean eliminar (Drol dts){
+        sSQL="delete from curso where idcur=?";
         try {
             PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdanio());
+            pst.setInt(1, dts.getIdrol());
             
             int n=pst.executeUpdate();
-            if (n!=0) {
+            if (n!=0) { 
                 return true;
             }else{
                 return false;
@@ -137,5 +133,6 @@ public class Lanioaca {
             return false;
         }
     }
+    
 }
 
