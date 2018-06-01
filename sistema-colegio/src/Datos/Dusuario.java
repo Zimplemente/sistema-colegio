@@ -2,6 +2,7 @@ package Datos;
 
 public class Dusuario {
     Integer idusu;
+    String codigo;
     String codusu;
     String apepatusu;
     String apematusu;
@@ -14,7 +15,9 @@ public class Dusuario {
     String telfusu;
     Drol odrol;
     String estado;
-
+    String nickusu;
+    String passusu;
+    
     public Dusuario() {
     }
 
@@ -22,8 +25,9 @@ public class Dusuario {
         this.idusu = idusu;
     }
 
-    public Dusuario(Integer idusu, String codusu, String apepatusu, String apematusu, String nomusu, Integer edadusu, String genusu, String usuario_idusu, String dirusu, String emailusu, String telfusu, Drol odrol, String estado) {
+    public Dusuario(Integer idusu, String codigo, String codusu, String apepatusu, String apematusu, String nomusu, Integer edadusu, String genusu, String usuario_idusu, String dirusu, String emailusu, String telfusu, Drol odrol, String estado, String nickusu, String passusu) {
         this.idusu = idusu;
+        this.codigo = codigo;
         this.codusu = codusu;
         this.apepatusu = apepatusu;
         this.apematusu = apematusu;
@@ -36,6 +40,8 @@ public class Dusuario {
         this.telfusu = telfusu;
         this.odrol = odrol;
         this.estado = estado;
+        this.nickusu = nickusu;
+        this.passusu = passusu;
     }
 
     public Integer getIdusu() {
@@ -44,6 +50,14 @@ public class Dusuario {
 
     public void setIdusu(Integer idusu) {
         this.idusu = idusu;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getCodusu() {
@@ -140,6 +154,22 @@ public class Dusuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getNickusu() {
+        return nickusu;
+    }
+
+    public void setNickusu(String nickusu) {
+        this.nickusu = nickusu;
+    }
+
+    public String getPassusu() {
+        return passusu;
+    }
+
+    public void setPassusu(String passusu) {
+        this.passusu = passusu;
     }
 
     
