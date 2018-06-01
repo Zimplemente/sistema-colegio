@@ -10,7 +10,7 @@ public class conexion {
     public String db="db_colegio";
     public String url="jdbc:mysql://localhost:3306/"+db;
     public String usr="root";
-    public String pass="";
+    public String pass="localhost";
 
        
     

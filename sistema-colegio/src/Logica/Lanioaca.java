@@ -18,6 +18,25 @@ public class Lanioaca {
     
     public Integer totalregistros;
     
+    public Integer GenerarId(){
+        sSQL = "select max(idanio+1) as idanio from anioaca";
+        Integer id = 0;
+        try {
+            Statement st = mysql.conectar().prepareStatement(sSQL);
+            ResultSet rs = st.executeQuery(sSQL);
+            
+            if(rs.next()){
+                id = rs.getInt("idanio");
+                if(rs.wasNull()){
+                    id = 1;
+                }
+            }
+            return id;
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
     
       public DefaultTableModel mostrar(String buscar, String anioactual){
         DefaultTableModel modelo;
@@ -54,8 +73,8 @@ public class Lanioaca {
     }
     
     public boolean insertar (Danioaca dts){
-        
-        sSQL="INSERT INTO anioaca ( idanio, anioactual, fechin, fechfin ) values(?,?,?,?)";
+        dts.setIdanio(GenerarId());
+        sSQL="INSERT INTO anioaca ( idanio, anioactual, fechin, fechfin) values(?,?,?,?)";
         try {
             PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
             pst.setInt(1, dts.getIdanio());
