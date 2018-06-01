@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Lanioaca {
     private conexion mysql=new conexion();
-    private Connection cn=mysql.conectar();
+//    private Connection mysql.conectar()=mysql.conectar();
     private String sSQL="";
     
     public Integer totalregistros;
@@ -32,7 +32,7 @@ public class Lanioaca {
        // sSQL="select * from producto where idproducto";
         
         try {
-            Statement st=cn.createStatement();
+            Statement st=mysql.conectar().createStatement();
             ResultSet rs=st.executeQuery(sSQL);
             
             while (rs.next()) {                
@@ -57,7 +57,7 @@ public class Lanioaca {
         
         sSQL="INSERT INTO anioaca ( idanio, anioactual, fechin, fechfin ) values(?,?,?,?)";
         try {
-            PreparedStatement pst=cn.prepareStatement(sSQL);
+            PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
             pst.setInt(1, dts.getIdanio());
             pst.setString(2, dts.getAnioactual());
             pst.setString(3, dts.getFechin()); 
@@ -81,7 +81,7 @@ public class Lanioaca {
         sSQL="update producto set aniactual=?,fechin=?,fechin=?   where idanio=?";
         try {
             
-            PreparedStatement pst=cn.prepareStatement(sSQL);
+            PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
             pst.setInt(1, dts.getIdanio());
             pst.setString(2, dts.getAnioactual());
             pst.setString(3, dts.getFechin());
@@ -104,7 +104,7 @@ public class Lanioaca {
     public boolean eliminar (Danioaca dts){
         sSQL="delete from producto where idproducto=?";
         try {
-            PreparedStatement pst=cn.prepareStatement(sSQL);
+            PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
             pst.setInt(1, dts.getIdanio());
             
             int n=pst.executeUpdate();
