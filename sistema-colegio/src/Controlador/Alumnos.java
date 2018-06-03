@@ -360,6 +360,9 @@ public class Alumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
 
+    public void Rol(){
+        txtRol.setText("ALUMNO");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
@@ -396,7 +399,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtRol;
+    public static javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

@@ -172,10 +172,10 @@ public class Acceso extends javax.swing.JFrame {
         }
         else if(user.equals(usuario) && pass.equals(pass)){
             
-            JOptionPane.showMessageDialog(this, "BIENVENIDO ADMINISTRADOR ... ","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "BIENVENIDO ADMINISTRADOR ... ","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);            
+            Acceso.this.dispose();//cierra a esta clase
             Menu p1 = new Menu();
             p1.setVisible(true);//mantiene abierto
-            dispose();//cierra a esta clase
         }
         else if(lusuario.ValidarLogin()==usuarioEncontrado){
             JOptionPane.showMessageDialog(this, "BIENVENIDO USUARIO "+txtUser.getText().trim()+"","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
