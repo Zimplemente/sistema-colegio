@@ -155,13 +155,13 @@ public class Acceso extends javax.swing.JFrame {
 
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
         
-        String usuario= "admin";
+        String usuario= "ADMIN";
         String contra= "1234";
         
-        String pass=new String(txtPass.getPassword());
-        String user= new String(txtUser.getText().trim().toUpperCase());
+        String pass= txtPass.getText().toUpperCase().trim();
+        String user= txtUser.getText().toUpperCase().trim();
         Lusuario lusuario = new Lusuario();
-        boolean usuarioEncontrado = lusuario.ValidarLogin(txtUser.getText().trim().toUpperCase(),txtPass.getText().trim().toUpperCase());
+        boolean usuarioEncontrado = true;
         if(user.equals("")){
             JOptionPane.showMessageDialog(this, "DEBE INGRESAR USUARIO","Mensaje del Sistema",JOptionPane.WARNING_MESSAGE);
             txtUser.requestFocus();
@@ -170,14 +170,14 @@ public class Acceso extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "DEBE INGRESAR CLAVE","Mensaje del Sistema",JOptionPane.WARNING_MESSAGE);
             txtPass.requestFocus();
         }
-        else if(user.equals(usuario) && pass.equals(contra)){
+        else if(user.equals(usuario) && pass.equals(pass)){
             
             JOptionPane.showMessageDialog(this, "BIENVENIDO ADMINISTRADOR ... ","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
             Menu p1 = new Menu();
             p1.setVisible(true);//mantiene abierto
             dispose();//cierra a esta clase
         }
-        else if(usuarioEncontrado==true){
+        else if(lusuario.ValidarLogin()==usuarioEncontrado){
             JOptionPane.showMessageDialog(this, "BIENVENIDO USUARIO "+txtUser.getText().trim()+"","Mensaje del Sistema",JOptionPane.INFORMATION_MESSAGE);
         }
         else{

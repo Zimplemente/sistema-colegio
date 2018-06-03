@@ -4,7 +4,6 @@ package Logica;
 import Controlador.Alumnos;
 import Datos.Dusuario;
 import conexion.conexion;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -99,12 +98,10 @@ public class Lusuario {
         }
     }
     
-    public boolean ValidarLogin(String nick,String pass){
-        sSQL = "select * from usuario where nickusu = '"+nick+"' and passusu = '"+pass+"';";
+    public boolean ValidarLogin(){
+        sSQL = "select * from usuario where nickusu = ? and passusu = ?;";
         try {
             PreparedStatement pst = mysql.conectar().prepareStatement(sSQL);
-            pst.setString(1, nick);
-            pst.setString(2, pass);
             
             int n=pst.executeUpdate();
             if (n!=0) {
@@ -128,23 +125,23 @@ public class Lusuario {
         return cadena;
     }    
     
-    public String GenerarCodigoSecreatria() throws Exception{
-//        Usuarios ousuarios = new Usuarios();
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        String apepat = Usuarios.txtApepat.getText().trim().toUpperCase().substring(0,1);
-        String cadena = "0" + year+ GenerarCodigoS()+ apepat;
-        return cadena;
-    }    
+//    public String GenerarCodigoSecreatria() throws Exception{
+////        Usuarios ousuarios = new Usuarios();
+//        Calendar cal = Calendar.getInstance();
+//        int year = cal.get(Calendar.YEAR);
+//        String apepat = Usuarios.txtApepat.getText().trim().toUpperCase().substring(0,1);
+//        String cadena = "0" + year+ GenerarCodigoS()+ apepat;
+//        return cadena;
+//    }    
     
-    public String GenerarCodigoProfesor() throws Exception{
-//        Usuarios ousuarios = new Usuarios();
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        String apepat = Usuarios.txtApepat.getText().trim().toUpperCase().substring(0,1);
-        String cadena = "0" + year+ GenerarCodigoP()+ apepat;
-        return cadena;
-    }    
+//    public String GenerarCodigoProfesor() throws Exception{
+////        Usuarios ousuarios = new Usuarios();
+//        Calendar cal = Calendar.getInstance();
+//        int year = cal.get(Calendar.YEAR);
+//        String apepat = Usuarios.txtApepat.getText().trim().toUpperCase().substring(0,1);
+//        String cadena = "0" + year+ GenerarCodigoP()+ apepat;
+//        return cadena;
+//    }    
     
     public DefaultTableModel mostrarsecretaria(String buscar, String nomusu){
       DefaultTableModel modelo;
@@ -260,7 +257,7 @@ public class Lusuario {
     
     public boolean insertarProfesor(Dusuario dts){
       dts.setIdusu(GenerarId());
-      dts.setCodusu(GenerarCodigoP());
+//      dts.setCodusu(GenerarCodigoP());
       
       sSQL="INSERT INTO usuario ( idusu, codigo,codusu,apepatusu,apematusu,nomusu,edadusu,genusu,usuario_idusu,dirusu,emailusu,telfusu,idrol,estado,nickusu,passusu)"
               + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -302,7 +299,7 @@ public class Lusuario {
       sSQL="INSERT INTO usuario ( idusu, codigo,codusu,apepatusu,apematusu,nomusu,edadusu,genusu,usuario_idusu,dirusu,emailusu,telfusu,idrol,estado,nickusu,passusu)"
               + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       try {
-          dts.setCodusu(GenerarCodigoSecreatria());
+//          dts.setCodusu(GenerarCodigoSecreatria());
           PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
           pst.setInt(1, dts.getIdusu());
           pst.setString(2, dts.getCodigo());
@@ -340,7 +337,7 @@ public class Lusuario {
       sSQL="INSERT INTO usuario ( idusu, codigo,codusu,apepatusu,apematusu,nomusu,edadusu,genusu,usuario_idusu,dirusu,emailusu,telfusu,idrol,estado,nickusu,passusu)"
               + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       try {
-          dts.setCodusu(GenerarCodigoProfesor());
+//          dts.setCodusu(GenerarCodigoProfesor());
           PreparedStatement pst=mysql.conectar().prepareStatement(sSQL);
           pst.setInt(1, dts.getIdusu());
           pst.setString(2, dts.getCodigo());
