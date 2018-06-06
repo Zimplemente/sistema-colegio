@@ -7,8 +7,8 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setMinimumSize(Toolkit.getDefaultToolkit().getScreenSize());
-        setVisible(true);
-        Util.AplicarIcono(this);
+//      
+//        Util.AplicarIcono(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,11 +38,10 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SISTEMA ESCOLAR");
-        setPreferredSize(new java.awt.Dimension(1066, 331));
 
         pnlPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         pnlPrincipal.setToolTipText("SISTEMA DE COLEGIO");
-        pnlPrincipal.setPreferredSize(new java.awt.Dimension(1066, 331));
+        pnlPrincipal.setPreferredSize(new java.awt.Dimension(1066, 106));
         pnlPrincipal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 pnlPrincipalMouseMoved(evt);
@@ -57,7 +56,7 @@ public class Menu extends javax.swing.JFrame {
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+            .addGap(0, 661, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -204,10 +203,10 @@ public class Menu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(3, 3, 3))
         );
 
         pack();
@@ -217,7 +216,9 @@ public class Menu extends javax.swing.JFrame {
         Alumnos oAlumnos = new Alumnos();
         oAlumnos.setVisible(true);
         oAlumnos.setTitle("[MANTENIMIENTO]-REGISTRO DE ALUMNOS");
-        oAlumnos.Rol();
+        pnlPrincipal.add(oAlumnos);
+        oAlumnos.show();
+//        oAlumnos.Rol();
     }//GEN-LAST:event_mnuAlumnosActionPerformed
 
     private void mnuProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProfesoresActionPerformed
