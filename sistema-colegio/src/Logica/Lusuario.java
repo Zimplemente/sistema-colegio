@@ -98,6 +98,7 @@ public class Lusuario {
         }
     }
     
+    
     public boolean ValidarLogin(){
         sSQL = "select * from usuario where nickusu = ? and passusu = ?;";
         try {
@@ -143,6 +144,7 @@ public class Lusuario {
 //        return cadena;
 //    }    
     
+    
     public DefaultTableModel mostrarsecretaria(String buscar, String nomusu){
       DefaultTableModel modelo;
 
@@ -171,7 +173,7 @@ public class Lusuario {
                 totalregistros=totalregistros+1;
                 modelo.addRow(registro);
             }
-            return modelo;
+            return modelo; 
 
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
@@ -183,14 +185,14 @@ public class Lusuario {
         DefaultTableModel modelo;
 
         String [] titulos ={"ID","CÓDIGO","APELLIDO PATERNO","APELLIDO MATERNO","NOMBRE","EDAD","GENERO","DIRECCION","TELÉFONO"};
-        String [] registro = new String[8];
+        String [] registro = new String[9];
 
         totalregistros=0;
         modelo=new DefaultTableModel(null, titulos);
 
         sSQL="select * from usuario where "+nomusu+" like '"+buscar+"%'order by idusu";
        // sSQL="select * from usuario where idusuario";
-
+    
         try {
             Statement st=mysql.conectar().createStatement();
             ResultSet rs=st.executeQuery(sSQL);

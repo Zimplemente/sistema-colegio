@@ -172,5 +172,9 @@ public class Dusuario {
         this.passusu = passusu;
     }
 
+    public void insertarAlumno(Dusuario ouDusuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

@@ -222,6 +222,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuAlumnosActionPerformed
 
     private void mnuProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProfesoresActionPerformed
+        Alumnos1 oAlumnos1 = new Alumnos1();
+        oAlumnos1.setVisible(true);
+        oAlumnos1.setTitle("[ MANTENIMIENTO ]- REGISTRO ");
+        pnlPrincipal.add(oAlumnos1);
+        oAlumnos1.show();
         
     }//GEN-LAST:event_mnuProfesoresActionPerformed
 
